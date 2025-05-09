@@ -1,0 +1,29 @@
+ Appache kafka is Open-Source Distributing Event Streaming platform.
+ Let consider the example of the Coofee Shop
+ In Appche kafka works in asyncronous way
+
+              -- Kraft-mode -- 
+
+Event Streaming means constinously capturing events in real time and storing   in a log and allowing systems (how're lsitening) to 
+react to the either immediately or later.
+  
+
+Event   : Any message (meaningful message)
+Producer: [Sender] Which is sending the data to kafka.
+Consumer: [Reciever]
+Topic   : Topic is the segregation of the message within the kafka.
+Consumer-Group : Team of counsumer which is lsitening the 
+Consumer-Rebalancing: It the process of rebalncing the consumers that each consumer process the fair events.
+Offset: Bookmark of the last read message. 
+Kafka-Broker: The instance of the kafka. Collectively called [Cluster]
+Brooker: A kafka server that stores the kafka message. 
+Zooker: Manage metadata leader election and configuration in kafka.
+Retention: How long kafka store the events.
+Replicaiton: Kafka keeps the copis of message for safety.
+Dead Lead Queue: Special palce where the kafka stoes the failed messages.
+kafka connect: is a tool connect kafka with databases, cloud.
+Kafka Streams: Allow you to process the data in side the kafka in real time.
+
+`-` Make the services decoupling
+`-` Missed events can be checked (Replaybility)
+`-` Efficiency
