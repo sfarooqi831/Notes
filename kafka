@@ -27,3 +27,99 @@ Kafka Streams: Allow you to process the data in side the kafka in real time.
 `-` Make the services decoupling
 `-` Missed events can be checked (Replaybility)
 `-` Efficiency
+--------
+		Date : 20-03-2023
+		  SBMS @ 6AM
+ -------------------------------------------------------------------
+ActiveMQ|JMS Limitations:
+*) Single Message Broker s/w, no Load Balancing concept
+*) Protocol Dependent (TCP)
+*) Language Dependent (works for Java Applications, Both Producer and Consumer)
+*) Slow, if no.of producer and consumers increased
+===================================================================
+			Apache Kafka
+
+=> Open source API given by Apache 
+=> used to implement Message Queue concepts
+=> Supports Cluster (multiple Message Brokers)
+=> Everything is Topic only. (P2P, Pub/Sub)
+=> Data Will be sent in Serialized format and DeSerialized at Consumer.
+
+=> Kafka s/w is called as EcoSystem.
+
+EcoSystem = Zookeeper + Topics + Cluster
+
+Cluster = Multiple Message Brokers as a unit.
+ On EcoSystem setup, cluster is created with size 1 (one Message Broker)
+ by default. Based on no.of consumers, no.of Message brokers are
+ created and allocated to consumer by Zookeeper.
+
+Topics = It is a Memory. Holds data based on topicName and Data Partitions
+(index number /offset starts from zero)
+
+Zookeeper = It controls both Cluster and Topics.
+
+
+===One Topic + One Message Broker Process=======================
+1. Producer application is started and reading data from different sources
+(FileSystem, Database, Network stream..etc)
+
+2. It is connected with EcoSystema and sending data using KafkaTemplate
+  in K=V format.
+
+3. A new topic is created in Kafka S/w if it is not exist.
+   Data is stored in packets formats those are called as "Partitions"
+   which are noted with index numbers called as "Offset Ids"
+
+4. Data is received from Producer application in Serialized format
+	and stored inside Topics Partitions.
+
+5. Consumer application is started and it is giving Key(topicName) to
+   EcoSystem. 
+   
+6.  ZooKeeper allocates Message Broker to Consumer App.
+
+7. Now, Message Broker checks for given topic (Exist or not?)
+8. If exist, Message Replica makes a cloned copy of Message(from topic)
+9. Message Brokers reads all data partitions clonings.
+10. Message will be delivered to Consumer application 
+    in Deserilized format.
+====================================================================
+Apache Kafka Download:
+https://kafka.apache.org/downloads
+Recomanded Version: kafka_2.12-2.8.1
+
+=> 2.8.1
+Scala 2.12  - kafka_2.12-2.8.1.tgz (asc, sha512)
+
+=> $tar xvzf kafka_2.12-2.8.1.tgz -C kafka_2.12-2.8.1/
+
+----------------------------------
+Goto Home location inside CMD:
+Ex: D:\kafka_2.12-2.8.1
+
+1. Zookeeper
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+2. Kafka Server/Cluster
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+3. Create new Topic
+.\bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic testone
+
+4. Producer
+.\bin\windows\kafka-console-producer.bat --bootstrap-server localhost:9092 --topic testone
+
+5. Consumer
+.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic testone --from-beginning
+.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic sajid --from-beginning
+
+
+*) Note:
+-> Zookeeper starts at port 2181
+-> Full kafka s/w runs at 9092
+-> Stop them using ctl+C command 
+	in order: Consumer, Producer, Kafka Server and then Zookeeper
+===================================================================
+
+
