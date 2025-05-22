@@ -112,7 +112,7 @@ Ex: D:\kafka_2.12-2.8.1
 
 5. Consumer
 .\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic testone --from-beginning
-.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic sajid --from-beginning
+.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic sajid --from-beginning --property print.partition=true
 --
 
 6. how to check the topics created
@@ -162,6 +162,9 @@ spring:
       properties:
         spring.json.add.type.headers: false
 
-
+--- 
+* We can use the java based configuration to set the Producer/Consumer Properties.
+* We can producer and read the message from the specific partition. 
+* 
 
 
