@@ -171,4 +171,7 @@ It is contract between the producer and concsumer.
 We can use the avro serializer at producer end and the avro deserializer to  get the relevent object.
 
 
+-::Error Handling the kafka::-
+
+There is a special space which is known as DLT (dead letter topic where the failed messages go after the kafka re-attempt failed)
 
