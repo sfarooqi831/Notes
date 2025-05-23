@@ -165,6 +165,10 @@ spring:
 --- 
 * We can use the java based configuration to set the Producer/Consumer Properties.
 * We can producer and read the message from the specific partition. 
-* 
+---
+Avro Schema:: How to handle the schema evaulation
+It is contract between the producer and concsumer. 
+We can use the avro serializer at producer end and the avro deserializer to  get the relevent object.
+
 
 
